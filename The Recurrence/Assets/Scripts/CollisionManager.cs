@@ -1,11 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using JetBrains.Annotations;
+using NUnit.Framework.Constraints;
 
 public class CollisionManager : MonoBehaviour
 {
+    [SerializeField] float Delay;
+    [SerializeField] AudioClip SuccessClip;
+    [SerializeField] AudioClip ExplosionClip;
+    bool isTransitioning = false;
+
+    AudioSource As;
+
+    void Start()
+    {
+        As = GetComponent<AudioSource>();
+    }
     void OnCollisionEnter(Collision other) 
     {
+        if(isTransitioning) {return;}
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -13,14 +26,31 @@ public class CollisionManager : MonoBehaviour
             break;
 
             case "Finish":
-                NextLevel();
-                break;
+            Completed();
+            break;
 
             default:
-                Debug.Log("Game Over");
-                GameOver();
-                break;
+            Crashed();
+            break;
         }
+    }
+
+    void Completed()
+    {
+        isTransitioning = true;
+        As.Stop();
+        As.PlayOneShot(SuccessClip);
+        GetComponent<Movement>().enabled = false;
+        Invoke("NextLevel", Delay);
+    }
+
+    void Crashed()
+    {
+        isTransitioning = true;
+        As.Stop();
+        As.PlayOneShot(ExplosionClip);
+        GetComponent<Movement>().enabled = false;
+        Invoke("GameOver", Delay);
     }
 
     void NextLevel()

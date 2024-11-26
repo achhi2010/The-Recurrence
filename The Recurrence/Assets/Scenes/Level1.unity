@@ -537,10 +537,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch Pad
       objectReference: {fileID: 0}
-    - target: {fileID: 4896136467967631130, guid: 66ad2877d1b58a0488a967649ef1a0c7, type: 3}
-      propertyPath: m_TagString
-      value: Friendly
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -655,10 +651,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landing Pad
       objectReference: {fileID: 0}
-    - target: {fileID: 6016729742920633435, guid: 75e52157a0564c94db3843fbd8184306, type: 3}
-      propertyPath: m_TagString
-      value: Finish
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -682,7 +674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6654554078576606287, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.15
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6654554078576606287, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
       propertyPath: m_LocalPosition.z

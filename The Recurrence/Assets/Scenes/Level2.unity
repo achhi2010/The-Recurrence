@@ -485,23 +485,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &484412414 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5554818689459908774, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
-  m_PrefabInstance: {fileID: 8664788173858280661}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &484412422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484412414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a1002016bdde54baf20d799d79a20b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1053652849383333171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -689,10 +672,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4062945977474124956, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5554818689459908774, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
       propertyPath: m_Name
       value: Rocket
@@ -740,10 +719,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5554818689459908774, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 484412422}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 099e35028e2908c4188e093bb6bc986c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

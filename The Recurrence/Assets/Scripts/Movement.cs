@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     AudioSource As;
     [SerializeField] float ThrustForce;
     [SerializeField] float RotationSpeed;
+    [SerializeField] AudioClip ThrustClip;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,7 +30,7 @@ public class Movement : MonoBehaviour
             Rb.AddRelativeForce(Vector3.up * ThrustForce * Time.deltaTime);
             if(!As.isPlaying)
             {
-                As.Play();
+                As.PlayOneShot(ThrustClip);
             }
         }
         else
