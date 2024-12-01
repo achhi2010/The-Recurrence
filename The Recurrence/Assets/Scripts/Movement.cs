@@ -9,6 +9,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float ThrustForce;
     [SerializeField] float RotationSpeed;
     [SerializeField] AudioClip ThrustClip;
+    [SerializeField] ParticleSystem JetParticles;
+    [SerializeField] ParticleSystem LeftThrusterParticles;
+    [SerializeField] ParticleSystem RightThrusterParticles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,31 +30,65 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            Rb.AddRelativeForce(Vector3.up * ThrustForce * Time.deltaTime);
-            if(!As.isPlaying)
-            {
-                As.PlayOneShot(ThrustClip);
-            }
+            StartThrusting();
         }
         else
         {
-            As.Stop();
+            StopThrusting();
         }
+    }
+
+    void StopThrusting()
+    {
+        As.Stop();
+        JetParticles.Stop();
+    }
+
+    void StartThrusting()
+    {
+        Rb.AddRelativeForce(Vector3.up * ThrustForce * Time.deltaTime);
+        if (!As.isPlaying)
+        {
+            As.PlayOneShot(ThrustClip);
+        }
+        if (!JetParticles.isPlaying) { JetParticles.Play(); }
     }
 
     void RotateInput()
     {
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            Rotation(RotationSpeed);
+            RotatingLeft();
         }
         else if(Input.GetKey(KeyCode.RightArrow))
         {
-            Rotation(-RotationSpeed);
+            RotatingRight();
+        }
+        else
+        {
+            NotRotating();
         }
     }
 
-        void Rotation(float rotating)
+    void NotRotating()
+    {
+        LeftThrusterParticles.Stop();
+        RightThrusterParticles.Stop();
+    }
+
+    void RotatingRight()
+    {
+        if (!RightThrusterParticles.isPlaying) { RightThrusterParticles.Play(); }
+        Rotation(-RotationSpeed);
+    }
+
+    void RotatingLeft()
+    {
+        if (!LeftThrusterParticles.isPlaying) { LeftThrusterParticles.Play(); }
+        Rotation(RotationSpeed);
+    }
+
+    void Rotation(float rotating)
     {
         Rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * rotating * Time.deltaTime);

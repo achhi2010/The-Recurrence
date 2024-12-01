@@ -8,7 +8,10 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] float Delay;
     [SerializeField] AudioClip SuccessClip;
     [SerializeField] AudioClip ExplosionClip;
+    [SerializeField] ParticleSystem SuccessParticles;
+    [SerializeField] ParticleSystem ExplosionParticles;
     bool isTransitioning = false;
+    bool disableCollision = false;
 
     AudioSource As;
 
@@ -16,9 +19,25 @@ public class CollisionManager : MonoBehaviour
     {
         As = GetComponent<AudioSource>();
     }
+    void Update()
+    {
+       DebugKeys(); 
+    }
+    
+    void DebugKeys()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            NextLevel();
+        }else if(Input.GetKeyDown(KeyCode.C))
+        {
+            disableCollision = !disableCollision;
+        }
+    }
+
     void OnCollisionEnter(Collision other) 
     {
-        if(isTransitioning) {return;}
+        if(isTransitioning || disableCollision) {return;}
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -37,6 +56,7 @@ public class CollisionManager : MonoBehaviour
 
     void Completed()
     {
+        SuccessParticles.Play();
         isTransitioning = true;
         As.Stop();
         As.PlayOneShot(SuccessClip);
@@ -46,6 +66,7 @@ public class CollisionManager : MonoBehaviour
 
     void Crashed()
     {
+        ExplosionParticles.Play();
         isTransitioning = true;
         As.Stop();
         As.PlayOneShot(ExplosionClip);
